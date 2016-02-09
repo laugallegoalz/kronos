@@ -5,7 +5,7 @@ namespace backend\models;
 use Yii;
 
 /**
- * This is the model class for table "presona".
+ * This is the model class for table "persona".
  *
  * @property integer $id
  * @property string $nombre
@@ -16,18 +16,19 @@ use Yii;
  * @property integer $municipio_id
  * @property integer $tipo_identificacion_id
  *
+ * @property Cliente[] $clientes
  * @property Empleado[] $empleados
- * @property Municipio $municipio
  * @property TipoIdentificacion $tipoIdentificacion
+ * @property Municipio $municipio
  */
-class Presona extends \yii\db\ActiveRecord
+class Persona extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'presona';
+        return 'persona';
     }
 
     /**
@@ -64,17 +65,17 @@ class Presona extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmpleados()
+    public function getClientes()
     {
-        return $this->hasMany(Empleado::className(), ['presona_id' => 'id']);
+        return $this->hasMany(Cliente::className(), ['persona_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMunicipio()
+    public function getEmpleados()
     {
-        return $this->hasOne(Municipio::className(), ['id' => 'municipio_id']);
+        return $this->hasMany(Empleado::className(), ['persona_id' => 'id']);
     }
 
     /**
@@ -83,5 +84,13 @@ class Presona extends \yii\db\ActiveRecord
     public function getTipoIdentificacion()
     {
         return $this->hasOne(TipoIdentificacion::className(), ['id' => 'tipo_identificacion_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMunicipio()
+    {
+        return $this->hasOne(Municipio::className(), ['id' => 'municipio_id']);
     }
 }

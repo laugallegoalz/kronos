@@ -12,7 +12,7 @@ use Yii;
  * @property string $departamento_id
  *
  * @property Departamento $departamento
- * @property Presona[] $presonas
+ * @property Persona[] $personas
  */
 class Municipio extends \yii\db\ActiveRecord
 {
@@ -59,8 +59,8 @@ class Municipio extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPresonas()
+    public function getPersonas()
     {
-        return $this->hasMany(Presona::className(), ['municipio_id' => 'id']);
+        return $this->hasMany(Persona::className(), ['municipio_id' => 'id']);
     }
 }
