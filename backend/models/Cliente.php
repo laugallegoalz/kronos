@@ -9,9 +9,9 @@ use Yii;
  *
  * @property integer $id
  * @property string $correo_electronico
- * @property integer $presona_id
+ * @property integer $persona_id
  *
- * @property Presona $presona
+ * @property Persona $persona
  * @property VentaAsistida[] $ventaAsistidas
  */
 class Cliente extends \yii\db\ActiveRecord
@@ -30,8 +30,8 @@ class Cliente extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['presona_id'], 'required'],
-            [['presona_id'], 'integer'],
+            [['persona_id'], 'required'],
+            [['persona_id'], 'integer'],
             [['correo_electronico'], 'string', 'max' => 255]
         ];
     }
@@ -44,16 +44,16 @@ class Cliente extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'correo_electronico' => Yii::t('app', 'Correo Electronico'),
-            'presona_id' => Yii::t('app', 'Presona ID'),
+            'persona_id' => Yii::t('app', 'Persona ID'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPresona()
+    public function getPersona()
     {
-        return $this->hasOne(Presona::className(), ['id' => 'presona_id']);
+        return $this->hasOne(Persona::className(), ['id' => 'persona_id']);
     }
 
     /**
